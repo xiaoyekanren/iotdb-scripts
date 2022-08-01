@@ -1,0 +1,69 @@
+zabbix_export:
+  version: '5.4'
+  date: '2021-08-23T15:36:23Z'
+  groups:
+    -
+      uuid: f2481361f99448eea617b7b1d4765566
+      name: 'Discovered hosts'
+    -
+      uuid: dc579cd7a1a34222933f24f52a68bcd8
+      name: 'Linux servers'
+  templates:
+    -
+      uuid: 1738181f20a94c2f8effbb4ec2e8e850
+      template: IoTDB
+      name: IoTDB
+      groups:
+        -
+          name: 'Discovered hosts'
+        -
+          name: 'Linux servers'
+      items:
+        -
+          uuid: 0659f80eada9459dae275dee65027799
+          name: IoTDB-TsFile总数
+          key: 'iotdb_monitor[count_all]'
+        -
+          uuid: 8cd75fa5455a499ba3cd41ee3cb3aa36
+          name: IoTDB-顺序TsFile数量
+          key: 'iotdb_monitor[count_seq]'
+        -
+          uuid: 1f427d41fec94942bcd4132d6b69ab9e
+          name: IoTDB-顺序TsFile-0层数量
+          key: 'iotdb_monitor[count_seq_lv0]'
+        -
+          uuid: 6d5577bea30a4afd9140feadb5841108
+          name: IoTDB-存储组
+          key: 'iotdb_monitor[count_storage_group]'
+        -
+          uuid: 03028bbd96a047dfb993843613552fb3
+          name: IoTDB-时间序列
+          key: 'iotdb_monitor[count_timeseries]'
+        -
+          uuid: db03421e99b94c358683660c043c3a56
+          name: IoTDB-乱序TsFile数量
+          key: 'iotdb_monitor[count_unseq]'
+        -
+          uuid: fbe5e7b61cf04b60aa3bcb03b5a7fa77
+          name: IoTDB-乱序TsFile-0层数量
+          key: 'iotdb_monitor[count_unseq_lv0]'
+        -
+          uuid: d391c4a04e994ee49227a95c2853f5f4
+          name: IoTDB-Tsfile总大小
+          key: 'iotdb_monitor[sum_all]'
+        -
+          uuid: 0bfa0a3130b947aa8661425e21da8e0e
+          name: IoTDB-resource大小
+          key: 'iotdb_monitor[sum_resource]'
+        -
+          uuid: f1cc663db7854f6391e0550cdc329b14
+          name: IoTDB-顺序TsFile大小
+          key: 'iotdb_monitor[sum_seq]'
+        -
+          uuid: 47508722f22a4fb6ac5ef2d7f4e5a34b
+          name: IoTDB-乱序TsFile大小
+          key: 'iotdb_monitor[sum_unseq]'
+        -
+          uuid: 068b4d810a15485dab8d4611c2f7b283
+          name: IoTDB-WAL大小
+          key: 'iotdb_monitor[sum_wal]'
