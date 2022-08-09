@@ -93,6 +93,7 @@ timescaledb() {
     $PG_BIN/initdb -d $PG_DATA
     sed -i "s:^max_connections.*:max_connections = 1000:g" $PG_DATA/postgresql.conf
     sed -i "s/^#listen_addresses =.*/listen_addresses = '*'/g" $PG_DATA/postgresql.conf
+    sudo echo "host    all             all             0.0.0.0/0               trust" >> $PG_DATA/pg_hba.conf
     # # use timescaledb-tune to auto set.
     # # 以下脚本适用配置：16核32G千兆，可安装timescale-tune来进行自动配置
     # timescaledb-tune -conf-path=/home/zzm/data/timescaledb/pg_data/postgresql.conf -pg-config=/home/zzm/data/timescaledb/pgsql/bin/pg_config
