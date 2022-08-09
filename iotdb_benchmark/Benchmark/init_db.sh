@@ -68,11 +68,11 @@ kairosdb() {
 taos() {
     # 修改taos的数据目录即可
     TAOS_DATA=/home/zzm/data/taos_data
-    systemctl stop taosd
+    sudo systemctl stop taosd
     sleep 1
-    rm -rf $TAOS_DATA/*
+    sudo rm -rf $TAOS_DATA/*
     sleep 1
-    systemctl start taosd
+    sudo systemctl start taosd
 }
 
 timescaledb() {
