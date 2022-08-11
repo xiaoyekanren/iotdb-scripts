@@ -74,7 +74,7 @@ main() {
     echo "mkdir record folder..." # 创建log文件夹
     mkdir -p $LOG_DIRECTORY
     for para in ${DYNAMIC_PARA_VALUES[@]}; do
-        echo "----------${START_TIME} test ${para}, start...----------"
+        echo "----------$(date +%Y%m%d_%H%M) test ${para}, start...----------"
         echo -e "1. change static paras..."
         alter_static_paras
         echo -e "2. modify dynamic paramater...\nchange ${DYNAMIC_PARA} to $para"
@@ -91,11 +91,10 @@ main() {
     done
 }
 
-# 自动生成的参数
-START_TIME=$(date +%Y%m%d)
+# 自动生成的参数、
 BENCHMARK_CONF="${BENCHMARK_HOME}/conf"
 BENCHMARK_CONF_FILE="${BENCHMARK_CONF}/config.properties"
-BENCHMARK_CONF_FILE_BAK="${BENCHMARK_CONF_FILE}_${START_TIME}_back"
+BENCHMARK_CONF_FILE_BAK="${BENCHMARK_CONF_FILE}_$(date +%Y%m%d)_back"
 BENCHMARK_EXEC_FILE="${BENCHMARK_HOME}/benchmark.sh"
 WORK_DIRECTORY="${BENCHMARK_HOME}/work_log"
 
