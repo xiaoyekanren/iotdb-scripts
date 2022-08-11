@@ -112,7 +112,9 @@ check_db_host
 # 备份配置文件
 echo "backup config file..."
 cp $BENCHMARK_CONF_FILE $BENCHMARK_CONF_FILE_BAK
-
+# 初始化数据库
+echo "init ${DB}..."
+init_db
 # 若需要长时间多次循环的测试，从这里往后复制到sleep 60
 # -----round 1-----
 DYNAMIC_PARA="BATCH_SIZE_PER_WRITE"
