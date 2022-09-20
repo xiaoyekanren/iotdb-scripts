@@ -124,12 +124,15 @@ timescaledb() {
     $PG_BIN/pg_ctl -D $PG_DATA -l $LOG start
     echo $!
     sleep 3
-
     #createdb
     $PG_BIN/createuser -dlrs postgres
     $PG_BIN/psql -U postgres -c "alter user postgres with password '123456';"
     $PG_BIN/psql -U postgres -c "CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;"
     echo 'finish'
+}
+
+check() {
+    echo 123
 }
 
 case "$1" in

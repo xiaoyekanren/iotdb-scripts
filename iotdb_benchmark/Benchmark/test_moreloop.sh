@@ -71,7 +71,8 @@ init_db() {
 }
 # 主程序
 main() {
-    echo "mkdir record folder..." # 创建log文件夹
+    LOG_DIRECTORY=$WORK_DIRECTORY/$DB-$DYNAMIC_PARA-$(date +%Y%m%d_%H%M)
+    echo -e "mkdir record folder..." # 创建log文件夹
     mkdir -p $LOG_DIRECTORY
     for para in ${DYNAMIC_PARA_VALUES[@]}; do
         echo "----------$(date +%Y%m%d_%H%M) test ${para}, start...----------"
@@ -91,7 +92,7 @@ main() {
     done
 }
 
-# 自动生成的参数、
+# 自动生成的参数
 BENCHMARK_CONF="${BENCHMARK_HOME}/conf"
 BENCHMARK_CONF_FILE="${BENCHMARK_CONF}/config.properties"
 BENCHMARK_CONF_FILE_BAK="${BENCHMARK_CONF_FILE}_$(date +%Y%m%d)_back"
@@ -108,13 +109,16 @@ WORK_DIRECTORY="${BENCHMARK_HOME}/work_log"
 # 准备工作
 # 检查数据库服务器连接状态
 check_db_host
-# 备份配置文件
-echo "backup config file..."
-cp $BENCHMARK_CONF_FILE $BENCHMARK_CONF_FILE_BAK
 # 初始化数据库
 echo "init ${DB}..."
 init_db
-# 若需要长时间多次循环的测试，从这里往后复制到sleep 60
+# 备份配置文件
+echo "backup config file..."
+if [ ! -f "${BENCHMARK_CONF_FILE_BAK}" ];then
+  # 备份不存在
+  cp $BENCHMARK_CONF_FILE $BENCHMARK_CONF_FILE_BAK
+fi
+# 若需要长时间多次循环的测试，从这里往后复制到"round 1 end"
 # -----round 1-----
 DYNAMIC_PARA="BATCH_SIZE_PER_WRITE"
 DYNAMIC_PARA_VALUES=(1 10 100)
@@ -141,6 +145,5 @@ static_paras=(
     [BENCHMARK_WORK_MODE]="testWithDefaultPath"
     [POINT_STEP]="10"
 )
-LOG_DIRECTORY=$WORK_DIRECTORY/$DB-$DYNAMIC_PARA-$(date +%Y%m%d_%H%M)
 main
 # -----round 1 end-----
