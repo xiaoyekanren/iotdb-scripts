@@ -100,11 +100,12 @@ BENCHMARK_EXEC_FILE="${BENCHMARK_HOME}/benchmark.sh"
 WORK_DIRECTORY="${BENCHMARK_HOME}/work_log"
 
 # 数据库信息：
-# IoTDB, Port:6667, User:root, Password:root, DBSwitch:IoTDB-01x-SESSION_BY_TABLET
-# InfluxDB, Port:8086, DBSwitch:InfluxDB
-# KairosDB, Port:8080, DBSwitch:KairosDB
-# TDengine, Port:6030, User:root, Password:taosdata, DBSwitch:TDengine
-# Timescaledb, Port:5432, User:postgres, Password:postgres, DB:postgres, DBSwitch:TimescaleDB
+# DB, DB_SWITCH, PORT, USERNAME, PASSWORD, DB_NAME
+# IoTDB, IoTDB-01x-SESSION_BY_TABLET, 6667, root, root, test
+# InfluxDB, InfluxDB, 8086, *, *, test
+# KairosDB, KairosDB, 8080, *, *, test
+# TDengine, TDengine, 6030, root, taosdata, test
+# Timescaledb, TimescaleDB, 5432, postgres, 123456, postgres
 
 # 准备工作
 # 检查数据库服务器连接状态
@@ -129,9 +130,12 @@ static_paras=(
     [DB_SWITCH]="IoTDB-013-SESSION_BY_TABLET"
     [HOST]="172.20.31.22"
     [PORT]="6667"
+    [USERNAME]='root'
+    [PASSWORD]='root'
+    [DB_NAME]='test'
     # 时长
-    # [TEST_MAX_TIME]="3600000"
-    [LOOP]="10"
+    [TEST_MAX_TIME]="3600000"
+    [LOOP]="999999"
     # 数据量
     [CLIENT_NUMBER]="1"
     [GROUP_NUMBER]="1"
@@ -141,6 +145,7 @@ static_paras=(
     [INSERT_DATATYPE_PROPORTION]="0:0:0:0:1:0"
     [ENCODING_DOUBLE]="GORILLA"
     # 其他
+    [OPERATION_PROPORTION]="1:0:0:0:0:0:0:0:0:0:0"
     [IS_DELETE_DATA]="true"
     [BENCHMARK_WORK_MODE]="testWithDefaultPath"
     [POINT_STEP]="10"
