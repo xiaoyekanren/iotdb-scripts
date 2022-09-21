@@ -9,7 +9,7 @@ set -e
 # -----!!!需要确定的参数!!!-----
 # benchmark路径
 BENCHMARK_HOME="/home/ubuntu/release_0.13_test/benchmark"
-# 仅作为log记录，和初始化使用，必须小写, 
+# 仅作为log记录，和初始化使用，必须小写
 # support db: iotdb, influxdb, kairosdb, taos, timescaledb
 DB="iotdb"
 # DB信息
@@ -114,9 +114,9 @@ echo "init ${DB}..."
 init_db
 # 备份配置文件
 echo "backup config file..."
-if [ ! -f "${BENCHMARK_CONF_FILE_BAK}" ];then
-  # 备份不存在
-  cp $BENCHMARK_CONF_FILE $BENCHMARK_CONF_FILE_BAK
+if [ ! -f "${BENCHMARK_CONF_FILE_BAK}" ]; then
+    # 备份不存在
+    cp $BENCHMARK_CONF_FILE $BENCHMARK_CONF_FILE_BAK
 fi
 # 若需要长时间多次循环的测试，从这里往后复制到"round 1 end"
 # -----round 1-----
