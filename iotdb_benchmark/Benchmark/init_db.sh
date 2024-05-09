@@ -19,6 +19,9 @@ singal() {
     timescaledb)
         echo timescaledb
         ;;
+    common)
+        common ${OPERATE}
+        ;;
     esac
 }
 
@@ -266,6 +269,15 @@ timescaledb_operate() {
         ;;
     get_pid)
         echo $(ps -ef | grep '[p]gsql/bin/postgres -D' | awk '{print $2}')
+        ;;
+    esac
+}
+
+common() {
+    case "$1" in
+    clear_cache)
+        sync
+        echo 3 >/proc/sys/vm/drop_caches
         ;;
     esac
 }
