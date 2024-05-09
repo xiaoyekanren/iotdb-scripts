@@ -19,6 +19,8 @@
 
 ## test_moreloop_x2.sh
 增加多个参数的变更
+### collect-results.sh
+用于整理test_moreloop_x2.sh的结果
 
 ## init_db.sh
 初始化数据库使用，要求放在数据库所在服务器
